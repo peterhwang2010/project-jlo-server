@@ -28,12 +28,19 @@ router.post('/event', function(request, response) {
 
 router.get('/event/:id', function(request, response) {
 	response.setHeader('Access-Control-Allow-Origin', '*');
-	
+
 	var id = request.params.id;
 	var sql = 'SELECT * FROM event WHERE eid = $1';
 	var q = conn.query(sql, [id], function(error, result) {
 		response.json(result.rows[0]);
 	});
 });
+
+router.delete('/event/:id', function(request, response){
+  var id = request.params.id;
+  var sql = 'DELETE FROM person WHERE eid = $1';
+  conn.query(sql, [id], function(error, result) {
+    response.send("success");
+})
 
 module.exports = router;

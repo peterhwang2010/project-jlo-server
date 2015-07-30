@@ -25,7 +25,7 @@ router.post('/person', function(request, response) {
 
 router.get('/person/:id', function(request, response) {
   response.setHeader('Access-Control-Allow-Origin', '*');
-  
+
 	var id = request.params.id;
 	var sql = 'SELECT * FROM person WHERE pid = $1';
 	var q = conn.query(sql, [id], function(error, result) {
@@ -33,5 +33,12 @@ router.get('/person/:id', function(request, response) {
 	});
 });
 
+router.delete('/person/:id', function(request, response){
+  var id = request.params.id;
+  var sql = 'DELETE FROM person WHERE pid = $1';
+  conn.query(sql, [id], function(error, result) {
+    response.send("success");
+  });
+});
 
 module.exports = router;
