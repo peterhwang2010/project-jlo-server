@@ -14,9 +14,12 @@ router.get('/event', function(request, response) {
 
 router.post('/event', function(request, response) { 
 	var obj = request.body;
+	console.log("HERE2"); 
+	console.log(obj); 
 	var id = Math.abs((new Date()).valueOf() & 0xffffffff);
 	var sql = 'INSERT INTO event (eid, name, purpose, venue, country, start_time, end_time) VALUES ($1, $2, $3, $4, $5, $6, $7)';
 		conn.query(sql, [id, obj.name, obj.purpose, obj.venue, obj.country, obj.start_time, obj.end_time], function(error, result) {
+		console.log(error); 
 		response.send(id + "");
 	});
 }); 
