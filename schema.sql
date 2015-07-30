@@ -1,6 +1,9 @@
+DROP TABLE attendance;
 DROP TABLE event;
+DROP TABLE person;
+
 CREATE TABLE event (
-	eid SERIAL PRIMARY KEY,
+	eid INTEGER PRIMARY KEY,
 	name TEXT,
 	purpose TEXT,
 	venue TEXT,
@@ -9,9 +12,8 @@ CREATE TABLE event (
 	end_time TIMESTAMP
 );
 
-DROP TABLE person;
 CREATE TABLE person (
-	pid SERIAL PRIMARY KEY,
+	pid INTEGER PRIMARY KEY,
 	first_name TEXT,
 	last_name TEXT,
 	email TEXT,
@@ -21,7 +23,6 @@ CREATE TABLE person (
 	bu TEXT
 );
 
-DROP TABLE attendance;
 CREATE TABLE attendance (
 	eid INTEGER REFERENCES event(eid),
 	pid INTEGER REFERENCES person(pid),
