@@ -6,6 +6,8 @@ var conn = anyDB.createConnection('postgres://localhost:5432/jlo');
 
 /* GET home page. */
 router.get('/person', function(request, response) {
+  response.setHeader('Access-Control-Allow-Origin', '*');
+
   var SQLquery = 'SELECT * FROM person';
   var q = conn.query(SQLquery, function(error, result) {
     response.json(result.rows);
@@ -22,6 +24,8 @@ router.post('/person', function(request, response) {
 }); 
 
 router.get('/person/:id', function(request, response) {
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  
 	var id = request.params.id;
 	var sql = 'SELECT * FROM person WHERE pid = $1';
 	var q = conn.query(sql, [id], function(error, result) {

@@ -6,6 +6,8 @@ var conn = anyDB.createConnection('postgres://localhost:5432/jlo');
 
 /* GET home page. */
 router.get('/event', function(request, response) {
+	response.setHeader('Access-Control-Allow-Origin', '*');
+
 	var SQLquery = 'SELECT * FROM event';
 	var q = conn.query(SQLquery, function(error, result) {
 		response.json(result.rows);
@@ -25,6 +27,8 @@ router.post('/event', function(request, response) {
 }); 
 
 router.get('/event/:id', function(request, response) {
+	response.setHeader('Access-Control-Allow-Origin', '*');
+	
 	var id = request.params.id;
 	var sql = 'SELECT * FROM event WHERE eid = $1';
 	var q = conn.query(sql, [id], function(error, result) {

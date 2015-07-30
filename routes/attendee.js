@@ -14,6 +14,8 @@ router.post('/guest', function(request, response) {
 });
 
 router.get('/guest/:eid', function(request, response) {
+	response.setHeader('Access-Control-Allow-Origin', '*');
+	
 	var eid = request.params.eid;
 	var sql = 'SELECT * FROM attendance AS a INNER JOIN person AS p ON a.pid = p.pid WHERE eid = $1';
 	var q = conn.query(sql, [eid], function(error, result) {
