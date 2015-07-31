@@ -1,6 +1,6 @@
-DROP TABLE attendance;
-DROP TABLE event;
-DROP TABLE person;
+-- DROP TABLE guest;
+-- DROP TABLE event;
+-- DROP TABLE person;
 
 CREATE TABLE event (
 	eid INTEGER PRIMARY KEY,
@@ -23,7 +23,7 @@ CREATE TABLE person (
 	bu TEXT
 );
 
-CREATE TABLE attendance (
+CREATE TABLE guest (
 	eid INTEGER REFERENCES event(eid),
 	pid INTEGER REFERENCES person(pid),
 	attended BOOLEAN,
