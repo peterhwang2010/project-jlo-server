@@ -8,8 +8,8 @@ CREATE TABLE event (
 	purpose TEXT,
 	venue TEXT,
 	country INTEGER,
-	start_time TIMESTAMP,
-	end_time TIMESTAMP
+	start_date TIMESTAMP,
+	end_date TIMESTAMP
 );
 
 CREATE TABLE person (
