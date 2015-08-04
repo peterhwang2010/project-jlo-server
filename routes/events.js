@@ -32,6 +32,16 @@ router.get('/event/:eid', function(req, res) {
 	});
 });
 
+router.put('/event/:eid', function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var eid = parseInt(req.params.eid);
+    var obj = req.body;
+    var sql = 'UPDATE event SET name = $1, purpose = $2, venue = $3, country = $4, start_date = $5, end_date = $6 WHERE eid = $7';
+    var q = conn.query(sql, [obj.name, obj.purpose, obj.venue, obj.country, obj.start_date, obj.end_date, eid], function(error, result){
+        res.json({ eid: eid });
+    });
+});
+
 router.delete('/event/:eid', function(req, res){
 	var eid = parseInt(req.params.eid); 
 	var sql = 'DELETE FROM event WHERE eid = $1';
