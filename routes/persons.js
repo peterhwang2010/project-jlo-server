@@ -32,6 +32,16 @@ router.get('/person/:pid', function(req, res) {
     });
 });
 
+router.put('/person/:pid', function(req, res){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    var pid = parseInt(req.params.pid);
+    var obj = req.body;
+    var sql = 'UPDATE person SET first_name = $1, last_name = $2, email = $3, sfdc_id = $4, job_title = $5, role_level = $6, bu = $7 WHERE pid = $8';
+    var q = conn.query(sql, [obj.first_name, obj.last_name, obj.email, obj.sfdc_id, obj.job_title, obj.role_level, obj.bu, pid], function(error, result){
+        res.json({ pid: pid });
+    });
+});
+
 router.delete('/person/:pid', function(req, res){
     var pid = parseInt(req.params.pid);
     var sql = 'DELETE FROM person WHERE pid = $1';
